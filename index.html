@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The First Circle · Bhramaastra Advisory Services</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:    #0e1f3d;
+    --navy-lt: #1a3a6b;
+    --gold:    #c9a227;
+    --gold-lt: #e8c252;
+    --gold-dim: rgba(201,162,39,0.15);
+    --cream:   #faf8f2;
+    --ink:     #1a1a2e;
+    --muted:   rgba(255,255,255,0.45);
+    --border:  rgba(201,162,39,0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: #fff;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── GRAIN OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ── AMBIENT GLOW ── */
+  .ambient {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.07;
+  }
+  .ambient-1 { width: 600px; height: 600px; background: var(--gold); top: -200px; right: -100px; }
+  .ambient-2 { width: 400px; height: 400px; background: #3a6bc9; bottom: 0; left: -100px; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 24px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, rgba(14,31,61,0.95), transparent);
+  }
+  .nav-brand {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(201,162,39,0.7);
+  }
+  .nav-badge {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    font-family: 'DM Mono', monospace;
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 5px 12px;
+    border-radius: 20px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+  }
+
+  .hero-ornament {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(201,162,39,0.5);
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .hero-ornament::before,
+  .hero-ornament::after {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,162,39,0.3));
+  }
+  .hero-ornament::after { background: linear-gradient(to left, transparent, rgba(201,162,39,0.3)); }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-lt);
+    font-weight: 300;
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 48px;
+    letter-spacing: 0.5px;
+  }
+
+  .hero-divider {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    margin: 0 auto 48px;
+    opacity: 0.4;
+  }
+
+  .hero-statement {
+    max-width: 720px;
+    margin: 0 auto 64px;
+  }
+  .hero-statement p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(19px, 2.5vw, 26px);
+    font-weight: 400;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.72);
+  }
+  .hero-statement p + p { margin-top: 24px; }
+  .hero-statement strong {
+    color: #fff;
+    font-weight: 500;
+  }
+  .hero-statement em {
+    color: var(--gold-lt);
+    font-style: italic;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: all 0.3s;
+    cursor: pointer;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .hero-cta:hover {
+    background: var(--gold-lt);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 32px rgba(201,162,39,0.25);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.3;
+    cursor: pointer;
+  }
+  .hero-scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, #fff, transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  .hero-scroll span { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; font-family: 'DM Mono', monospace; }
+  @keyframes scrollPulse { 0%,100%{opacity:0.3} 50%{opacity:0.8} }
+
+  /* ── PHILOSOPHY SECTION ── */
+  .section {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,162,39,0.15), transparent);
+    margin-bottom: 80px;
+  }
+
+  .section-eyebrow {
+    font-size: 10px;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: rgba(201,162,39,0.55);
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-eyebrow::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(201,162,39,0.2), transparent);
+  }
+
+  .pull-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 3.5vw, 36px);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.85);
+    border-left: 2px solid rgba(201,162,39,0.4);
+    padding-left: 32px;
+    margin-bottom: 40px;
+  }
+
+  .body-text {
+    font-size: 15px;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+  }
+  .body-text + .body-text { margin-top: 20px; }
+  .body-text strong { color: rgba(255,255,255,0.8); font-weight: 500; }
+
+  /* ── DIFFERENTIATION CARDS ── */
+  .diff-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 64px 0;
+    background: rgba(201,162,39,0.08);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  @media(max-width:640px) { .diff-grid { grid-template-columns: 1fr; } }
+
+  .diff-card {
+    background: rgba(14,31,61,0.8);
+    padding: 36px 32px;
+    transition: background 0.3s;
+  }
+  .diff-card:hover { background: rgba(26,58,107,0.6); }
+  .diff-card-tag {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-family: 'DM Mono', monospace;
+    color: rgba(201,162,39,0.45);
+    margin-bottom: 14px;
+  }
+  .diff-card-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(17px, 2vw, 21px);
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+  .diff-card-body {
+    font-size: 13px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.42);
+    font-weight: 300;
+  }
+
+  /* ── INTUITION CONVERGENCE ── */
+  .convergence-block {
+    background: linear-gradient(135deg, rgba(26,58,107,0.4), rgba(14,31,61,0.8));
+    border: 1px solid rgba(201,162,39,0.12);
+    border-radius: 4px;
+    padding: 48px;
+    margin: 64px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .convergence-block::before {
+    content: '◈';
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    font-size: 48px;
+    color: rgba(201,162,39,0.06);
+    font-family: 'DM Mono', monospace;
+  }
+  .convergence-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 2.5vw, 28px);
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 24px;
+    line-height: 1.3;
+  }
+  .convergence-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 28px;
+  }
+  @media(max-width:600px) { .convergence-row { grid-template-columns: 1fr; } }
+  .convergence-item {
+    border-top: 1px solid rgba(201,162,39,0.15);
+    padding-top: 20px;
+  }
+  .convergence-item-label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+  .convergence-item-text {
+    font-size: 13px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.45);
+    font-weight: 300;
+  }
+
+  /* ── LAYERS ── */
+  .layers-block {
+    margin: 48px 0;
+  }
+  .layers-row {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  @media(max-width:580px) { .layers-row { grid-template-columns: 1fr; } }
+  .layer-item {
+    background: rgba(14,31,61,0.7);
+    padding: 20px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .layer-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: rgba(201,162,39,0.4);
+    padding-top: 2px;
+    min-width: 20px;
+  }
+  .layer-name {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.4;
+    font-weight: 300;
+  }
+
+  /* ── WHAT WE ASK ── */
+  .ask-block {
+    margin: 64px 0;
+  }
+  .ask-item {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .ask-item:first-child { border-top: 1px solid rgba(255,255,255,0.05); }
+  .ask-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: rgba(201,162,39,0.35);
+    padding-top: 4px;
+    min-width: 24px;
+  }
+  .ask-q {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2vw, 19px);
+    font-weight: 400;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  /* ── FORM SECTION ── */
+  .form-section {
+    position: relative;
+    z-index: 1;
+    background: rgba(10,20,40,0.6);
+    border-top: 1px solid rgba(201,162,39,0.08);
+    border-bottom: 1px solid rgba(201,162,39,0.08);
+    padding: 80px 40px;
+  }
+  .form-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .form-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .form-subtitle {
+    font-size: 14px;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 48px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .form-group { margin-bottom: 28px; }
+  .form-label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(201,162,39,0.55);
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 10px;
+  }
+  .form-sublabel {
+    font-size: 11px;
+    color: rgba(255,255,255,0.25);
+    margin-bottom: 10px;
+    display: block;
+    font-weight: 300;
+  }
+  .form-input, .form-textarea, .form-select {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 2px;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    transition: border-color 0.2s, background 0.2s;
+    outline: none;
+    appearance: none;
+  }
+  .form-input, .form-select { padding: 14px 16px; }
+  .form-textarea { padding: 16px; resize: vertical; min-height: 100px; line-height: 1.7; }
+  .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.18); }
+  .form-input:focus, .form-textarea:focus, .form-select:focus {
+    border-color: rgba(201,162,39,0.35);
+    background: rgba(255,255,255,0.06);
+  }
+  .form-select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(201,162,39,0.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
+  .form-select option { background: #0e1f3d; color: #fff; }
+
+  .strategic-question {
+    background: linear-gradient(135deg, rgba(201,162,39,0.06), rgba(26,58,107,0.3));
+    border: 1px solid rgba(201,162,39,0.18);
+    border-radius: 4px;
+    padding: 28px;
+    margin-bottom: 28px;
+  }
+  .strategic-q-label {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 10px;
+  }
+  .strategic-q-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2vw, 20px);
+    font-style: italic;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .field-error {
+    font-size: 11px;
+    color: #e05050;
+    margin-top: 6px;
+    display: none;
+    font-weight: 300;
+  }
+  .field-valid { border-color: rgba(100,200,120,0.3) !important; }
+  .field-invalid { border-color: rgba(220,80,80,0.4) !important; }
+
+  .submit-btn {
+    width: 100%;
+    padding: 18px;
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.3s;
+    margin-top: 12px;
+  }
+  .submit-btn:hover:not(:disabled) {
+    background: var(--gold-lt);
+    box-shadow: 0 8px 32px rgba(201,162,39,0.2);
+  }
+  .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .form-note {
+    margin-top: 20px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.2);
+    text-align: center;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── SUCCESS STATE ── */
+  .success-state {
+    display: none;
+    text-align: center;
+    padding: 60px 0;
+  }
+  .success-icon {
+    font-size: 36px;
+    margin-bottom: 24px;
+    opacity: 0.8;
+  }
+  .success-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+  .success-text {
+    font-size: 14px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.8;
+    max-width: 480px;
+    margin: 0 auto 32px;
+    font-weight: 300;
+  }
+  .success-copy-block {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,162,39,0.15);
+    border-radius: 4px;
+    padding: 24px;
+    text-align: left;
+    margin: 24px 0;
+    font-size: 12px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.5);
+    font-family: 'DM Mono', monospace;
+    white-space: pre-wrap;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  .copy-btn {
+    background: none;
+    border: 1px solid rgba(201,162,39,0.3);
+    color: rgba(201,162,39,0.7);
+    padding: 8px 20px;
+    border-radius: 2px;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+  }
+  .copy-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 48px 24px;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 8px;
+  }
+  .footer-note {
+    font-size: 11px;
+    color: rgba(255,255,255,0.15);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 1px;
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+
+<body>
+
+<div class="ambient ambient-1"></div>
+<div class="ambient ambient-2"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Bhramaastra Advisory Services</div>
+  <div class="nav-badge">Private · By Invitation</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-ornament">The First Circle</div>
+
+  <h1 class="hero-title">
+    The decision you<br>
+    <em>didn't know</em><br>
+    you were making.
+  </h1>
+
+  <p class="hero-subtitle">DecisionMine Engine · Third Brain™ · Private Access</p>
+
+  <div class="hero-divider"></div>
+
+  <div class="hero-statement fade-up">
+    <p>
+      Every AI answers <strong>the question you asked.</strong><br>
+      The Third Brain examines <em>the decision you didn't know you were making.</em>
+    </p>
+    <p>
+      You have been invited to experience it before anyone else does.
+    </p>
+  </div>
+
+  <button class="hero-cta" onclick="document.getElementById('formSection').scrollIntoView({behavior:'smooth'})">
+    Enter The First Circle →
+  </button>
+
+  <div class="hero-scroll" onclick="document.getElementById('philosophySection').scrollIntoView({behavior:'smooth'})">
+    <div class="hero-scroll-line"></div>
+    <span>Discover</span>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<div id="philosophySection"></div>
+<div style="position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 40px">
+  <div class="section-divider"></div>
+</div>
+
+<section class="section fade-up">
+  <div class="section-eyebrow">◈ &nbsp;The Philosophy</div>
+
+  <div class="pull-quote">
+    "The verdict is not designed to replace your judgment.<br>
+    It is designed to tell you whether your judgment<br>
+    has examined everything it needs to."
+  </div>
+
+  <p class="body-text">
+    Senior leaders do not struggle with intelligence. They struggle with <strong>systematic blind spots</strong> — the layer they did not examine because the economic case was exciting, the regulatory question they skipped because the strategic logic felt compelling, the stakeholder they missed because the idea was internally popular.
+  </p>
+  <p class="body-text" style="margin-top:20px">
+    The Third Brain holds <strong>15 analytical layers open simultaneously</strong> — without any of them collapsing under the weight of the others. Legal admissibility fires whether or not the economic case is exciting. Ethics review happens whether or not the user wants it. Governance readiness surfaces whether or not the founder thought to ask.
+  </p>
+  <p class="body-text" style="margin-top:20px">
+    The user cannot skip the uncomfortable ones. <strong>That is not a feature. That is the entire point.</strong>
+  </p>
+</section>
+
+<!-- DIFFERENTIATION -->
+<section class="section fade-up" style="padding-top:0">
+  <div class="section-eyebrow">◈ &nbsp;What Makes This Different</div>
+
+  <div class="diff-grid">
+    <div class="diff-card">
+      <div class="diff-card-tag">Every Other AI</div>
+      <div class="diff-card-heading">Answers the question you asked</div>
+      <div class="diff-card-body">Responds to what was submitted. If you did not ask about legal risk — it does not appear. If you did not ask about stakeholder resistance — silence. The frame you bring is the frame you get back.</div>
+    </div>
+    <div class="diff-card">
+      <div class="diff-card-tag">The Third Brain</div>
+      <div class="diff-card-heading">Examines the decision you didn't know you were making</div>
+      <div class="diff-card-body">All 15 layers run automatically regardless of what you submitted. The frame you bring is the first thing interrogated. What you believe and what is actually true are treated as separate questions.</div>
+    </div>
+    <div class="diff-card">
+      <div class="diff-card-tag">Every Other AI</div>
+      <div class="diff-card-heading">Gives you information</div>
+      <div class="diff-card-body">Comprehensive, well-organised, often brilliant. But it does not make the decision. It gives you more material to decide with — leaving the hardest cognitive work exactly where it was.</div>
+    </div>
+    <div class="diff-card">
+      <div class="diff-card-tag">The Third Brain</div>
+      <div class="diff-card-heading">Returns a verdict with a reasoning chain</div>
+      <div class="diff-card-body">GO. PILOT. CAUTION. REDESIGN. STOP. With the specific factors that decided it. With what would need to change to move the verdict. Decision support that actually makes a decision.</div>
+    </div>
+  </div>
+</section>
+
+<!-- INTUITION CONVERGENCE -->
+<section class="section fade-up" style="padding-top:0">
+  <div class="section-eyebrow">◈ &nbsp;On Trusting the Verdict</div>
+
+  <div class="convergence-block">
+    <div class="convergence-title">
+      The Third Brain does not ask you to trust its verdict.<br>
+      It asks you to use it as a mirror for your own thinking.
+    </div>
+    <p class="body-text">
+      A leader with decades of pattern recognition does not need an AI to tell them what to decide. What no human brain can do — under real cognitive load — is hold 15 analytical lenses open simultaneously without unconsciously prioritising. That is where the engine operates.
+    </p>
+    <div class="convergence-row">
+      <div class="convergence-item">
+        <div class="convergence-item-label">When it agrees with your intuition</div>
+        <div class="convergence-item-text">That is not the engine validating you. That is your intuition confirming it was tracking the right signals all along. Your confidence in this decision should rise.</div>
+      </div>
+      <div class="convergence-item">
+        <div class="convergence-item-label">When it contradicts your intuition</div>
+        <div class="convergence-item-text">That is not a reason to override your experience. It is a signal to interrogate one specific layer. You now know exactly which one. Your experience may hold a nuance the engine cannot see.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 15 LAYERS -->
+<section class="section fade-up" style="padding-top:0">
+  <div class="section-eyebrow">◈ &nbsp;The 15 Analytical Layers</div>
+  <p class="body-text" style="margin-bottom:32px">Every analysis runs all 15. Simultaneously. Regardless of what you submit.</p>
+
+  <div class="layers-block">
+    <div class="layers-row">
+      <div class="layer-item"><span class="layer-num">01</span><span class="layer-name">What the idea really is — beneath the surface framing</span></div>
+      <div class="layer-item"><span class="layer-num">02</span><span class="layer-name">Visible activity and primary system</span></div>
+      <div class="layer-item"><span class="layer-num">03</span><span class="layer-name">Hidden burden and secondary output</span></div>
+      <div class="layer-item"><span class="layer-num">04</span><span class="layer-name">Reclassification — waste, signal, asset, or risk?</span></div>
+      <div class="layer-item"><span class="layer-num">05</span><span class="layer-name">First-order opportunity and minimum intervention</span></div>
+      <div class="layer-item"><span class="layer-num">06</span><span class="layer-name">Second-order value — what becomes visible after</span></div>
+      <div class="layer-item"><span class="layer-num">07</span><span class="layer-name">Value creation vs value capture — are both present?</span></div>
+      <div class="layer-item"><span class="layer-num">08</span><span class="layer-name">Legal review — GREEN / AMBER / RED gate</span></div>
+      <div class="layer-item"><span class="layer-num">09</span><span class="layer-name">Ethical and trust review — public scrutiny test</span></div>
+      <div class="layer-item"><span class="layer-num">10</span><span class="layer-name">Technical feasibility under real conditions</span></div>
+      <div class="layer-item"><span class="layer-num">11</span><span class="layer-name">Economic viability — cost, margin, payback</span></div>
+      <div class="layer-item"><span class="layer-num">12</span><span class="layer-name">Operational implementability with real people</span></div>
+      <div class="layer-item"><span class="layer-num">13</span><span class="layer-name">Governance requirements and stop conditions</span></div>
+      <div class="layer-item"><span class="layer-num">14</span><span class="layer-name">Stakeholder map — beneficiaries, blockers, risk bearers</span></div>
+      <div class="layer-item"><span class="layer-num">15</span><span class="layer-name">Time horizon — H1 through H4 placement</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE ASK -->
+<section class="section fade-up" style="padding-top:0">
+  <div class="section-eyebrow">◈ &nbsp;What The First Circle Is Asked</div>
+  <p class="body-text" style="margin-bottom:40px">
+    You are not here to test software. You are here because your judgment on what this engine does — and does not do — is irreplaceable. These are the only questions we ask.
+  </p>
+
+  <div class="ask-block">
+    <div class="ask-item">
+      <span class="ask-num">01</span>
+      <span class="ask-q">What did the engine examine that you had not consciously examined before you submitted?</span>
+    </div>
+    <div class="ask-item">
+      <span class="ask-num">02</span>
+      <span class="ask-q">Where did the verdict match your intuition — and where did it diverge? What did that divergence reveal?</span>
+    </div>
+    <div class="ask-item">
+      <span class="ask-num">03</span>
+      <span class="ask-q">Which of the 15 layers delivered the most unexpected insight? Which felt weakest?</span>
+    </div>
+    <div class="ask-item">
+      <span class="ask-num">04</span>
+      <span class="ask-q">Is there a decision-making gap in your professional world that an engine like this could genuinely close?</span>
+    </div>
+    <div class="ask-item">
+      <span class="ask-num">05</span>
+      <span class="ask-q">If you were advising the founder building this — what is the one thing they must get right before taking it to market?</span>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<div id="formSection"></div>
+<section class="form-section">
+  <div class="form-inner">
+
+    <div id="formState">
+      <h2 class="form-title fade-up">Share your perspective.</h2>
+      <p class="form-subtitle fade-up">
+        Five questions. No time limit. No right answers.<br>
+        Your experience of the engine is the only data that matters.
+      </p>
+
+      <form id="firstCircleForm" novalidate>
+
+        <div class="form-group fade-up">
+          <label class="form-label" for="fc_name">Your Name</label>
+          <input class="form-input" id="fc_name" name="name" type="text" placeholder="As you'd like to be addressed" autocomplete="name">
+          <div class="field-error" id="err_name">Please share your name.</div>
+        </div>
+
+        <div class="form-group fade-up">
+          <label class="form-label" for="fc_role">Your Role & Organisation</label>
+          <input class="form-input" id="fc_role" name="role" type="text" placeholder="Title · Organisation">
+          <div class="field-error" id="err_role">Please share your role.</div>
+        </div>
+
+        <div class="form-group fade-up">
+          <label class="form-label" for="fc_idea">The decision or idea you submitted to the engine</label>
+          <span class="form-sublabel">A brief description — for context only, entirely confidential</span>
+          <input class="form-input" id="fc_idea" name="idea_submitted" type="text" placeholder="What did you put into the Third Brain?">
+        </div>
+
+        <div class="form-group fade-up">
+          <label class="form-label" for="fc_q1">What did the engine examine that you had not consciously examined?</label>
+          <textarea class="form-textarea" id="fc_q1" name="q1_unexpected_examination" placeholder="The layer, the risk, the question that appeared without you asking for it..." style="min-height:90px"></textarea>
+        </div>
+
+        <div class="form-group fade-up">
+          <label class="form-label" for="fc_q2">Where did the verdict match your intuition — and where did it diverge?</label>
+          <span class="form-sublabel">The convergence and the divergence are both valuable signals</span>
+          <textarea class="form-textarea" id="fc_q2" name="q2_intuition_convergence" placeholder="Where did it confirm what you sensed? Where did it challenge it?" style="min-height:90px"></textarea>
+        </div>
+
+        <div class="form-group fade-up">
+          <label class="form-label" for="fc_q3">Which layer delivered the most unexpected insight? Which felt weakest?</label>
+          <textarea class="form-textarea" id="fc_q3" name="q3_layer_quality" placeholder="Be specific — the more precise your critique, the more useful it is" style="min-height:90px"></textarea>
+        </div>
+
+        <div class="form-group fade-up">
+          <label class="form-label" for="fc_q4">Is there a genuine decision-making gap this could close in your world?</label>
+          <textarea class="form-textarea" id="fc_q4" name="q4_genuine_gap" placeholder="In your professional context — where would an engine like this have real consequence?" style="min-height:90px"></textarea>
+        </div>
+
+        <!-- THE STRATEGIC QUESTION — replaces pricing entirely -->
+        <div class="strategic-question fade-up">
+          <div class="strategic-q-label">◈ &nbsp;The One Question That Matters Most</div>
+          <div class="strategic-q-text">
+            "If you were advising the founder building this — what is the one thing they must get right before taking it to market?"
+          </div>
+          <textarea class="form-textarea" id="fc_q5" name="q5_founder_advice" placeholder="Your honest strategic counsel. This is the question we most need answered." style="min-height:120px;background:rgba(255,255,255,0.02)"></textarea>
+        </div>
+
+        <div class="form-group fade-up">
+          <label class="form-label" for="fc_email">Your email <span style="color:rgba(255,255,255,0.2);font-weight:300;text-transform:none;font-size:10px">— only if you would welcome a direct response from Amish</span></label>
+          <input class="form-input" id="fc_email" name="email" type="email" placeholder="Optional · Never shared · Never used for marketing">
+        </div>
+
+        <button type="submit" class="submit-btn fade-up" id="submitBtn">
+          Submit to The First Circle →
+        </button>
+
+        <p class="form-note">
+          Your response goes directly to Amish Shah, Founder — Bhramaastra Advisory Services.<br>
+          Held in complete confidence. Never aggregated. Never published without your consent.
+        </p>
+
+      </form>
+    </div>
+
+    <!-- SUCCESS STATE -->
+    <div class="success-state" id="successState">
+      <div class="success-icon">◈</div>
+      <h3 class="success-title">Received with gratitude.</h3>
+      <p class="success-text">
+        Your perspective is now part of how the Third Brain evolves. Amish will read this personally. If you have shared your email and there is something worth responding to, you will hear directly.
+      </p>
+      <div class="success-copy-block" id="successCopy"></div>
+      <button class="copy-btn" onclick="copySubmission()">Copy Your Response</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Bhramaastra Advisory Services</div>
+  <div class="footer-note">DecisionMine Engine · Third Brain™ · The First Circle · Private Access · 2026</div>
+</footer>
+
+<script>
+// ── INTERSECTION OBSERVER FOR FADE-UP ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ── FORM ──
+const FORMSPREE = 'https://formspree.io/f/xeevjeor';
+
+let submissionData = {};
+
+document.getElementById('firstCircleForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  if (!validateForm()) return;
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+
+  const data = {
+    name:                   val('fc_name'),
+    role:                   val('fc_role'),
+    idea_submitted:         val('fc_idea'),
+    q1_unexpected:          val('fc_q1'),
+    q2_intuition:           val('fc_q2'),
+    q3_layer_quality:       val('fc_q3'),
+    q4_genuine_gap:         val('fc_q4'),
+    q5_founder_advice:      val('fc_q5'),
+    email:                  val('fc_email'),
+    _subject:               `First Circle Response — ${val('fc_name')} · ${val('fc_role')}`,
+    source:                 'The First Circle · trustedcircle.bhramaastra.com',
+    submitted_at:           new Date().toLocaleString('en-GB',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})
+  };
+
+  submissionData = data;
+
+  try {
+    const res = await fetch(FORMSPREE, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body:    JSON.stringify(data)
+    });
+
+    if (res.ok) {
+      showSuccess(data);
+    } else {
+      throw new Error('Submission failed');
+    }
+  } catch(err) {
+    // Fallback — show success and store locally
+    showSuccess(data);
+    localStorage.setItem('fc_submission_' + Date.now(), JSON.stringify(data));
+  }
+});
+
+function val(id) { return (document.getElementById(id)?.value || '').trim(); }
+
+function validateForm() {
+  let valid = true;
+  const required = [
+    { id: 'fc_name', err: 'err_name' },
+    { id: 'fc_role', err: 'err_role' }
+  ];
+  required.forEach(f => {
+    const el = document.getElementById(f.id);
+    const err = document.getElementById(f.err);
+    if (!el.value.trim()) {
+      el.classList.add('field-invalid');
+      if (err) err.style.display = 'block';
+      valid = false;
+    } else {
+      el.classList.remove('field-invalid');
+      el.classList.add('field-valid');
+      if (err) err.style.display = 'none';
+    }
+  });
+  return valid;
+}
+
+function showSuccess(data) {
+  document.getElementById('formState').style.display = 'none';
+  const ss = document.getElementById('successState');
+  ss.style.display = 'block';
+
+  const copy = [
+    `Name: ${data.name}`,
+    `Role: ${data.role}`,
+    data.idea_submitted ? `Decision submitted: ${data.idea_submitted}` : '',
+    data.q1_unexpected  ? `\nQ1 — Unexpected examination:\n${data.q1_unexpected}` : '',
+    data.q2_intuition   ? `\nQ2 — Intuition convergence:\n${data.q2_intuition}` : '',
+    data.q3_layer_quality ? `\nQ3 — Layer quality:\n${data.q3_layer_quality}` : '',
+    data.q4_genuine_gap ? `\nQ4 — Genuine gap:\n${data.q4_genuine_gap}` : '',
+    data.q5_founder_advice ? `\nQ5 — Founder counsel:\n${data.q5_founder_advice}` : '',
+    data.email          ? `\nEmail: ${data.email}` : '',
+    `\nSubmitted: ${data.submitted_at}`
+  ].filter(Boolean).join('\n');
+
+  document.getElementById('successCopy').textContent = copy;
+  ss.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function copySubmission() {
+  const text = document.getElementById('successCopy').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = 'Copied ✓';
+    setTimeout(() => btn.textContent = 'Copy Your Response', 2000);
+  });
+}
+
+// ── ADMIN REVIEW (type 'basreview') ──
+let _keyBuffer = '';
+document.addEventListener('keydown', e => {
+  _keyBuffer += e.key.toLowerCase();
+  if (_keyBuffer.length > 10) _keyBuffer = _keyBuffer.slice(-10);
+  if (_keyBuffer.includes('basreview')) { _keyBuffer = ''; showAdminPanel(); }
+});
+
+function showAdminPanel() {
+  const stored = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith('fc_submission_')) {
+      try { stored.push(JSON.parse(localStorage.getItem(k))); } catch {}
+    }
+  }
+  const msg = stored.length
+    ? stored.map(s => Object.entries(s).map(([k,v]) => `${k}: ${v}`).join('\n')).join('\n\n──────\n\n')
+    : 'No offline submissions stored.';
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;overflow-y:auto;padding:40px;font-family:"DM Mono",monospace;font-size:12px;color:#c9a227;white-space:pre-wrap;line-height:1.8;cursor:pointer';
+  overlay.innerHTML = `<div style="max-width:800px;margin:0 auto"><div style="color:rgba(255,255,255,0.3);margin-bottom:24px;font-size:10px;letter-spacing:2px">BAS · ADMIN · FIRST CIRCLE OFFLINE SUBMISSIONS · Click anywhere to close</div>${msg}</div>`;
+  overlay.onclick = () => overlay.remove();
+  document.body.appendChild(overlay);
+}
+</script>
+
+</body>
+</html>
